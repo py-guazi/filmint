@@ -66,19 +66,7 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
         // Your upload logic goes here
         // const uploadedUrl = await yourUploadFunction(file);
         // Load client with specific private key
-        const principal = Signer.parse(process.env.KEY)
-        const store = new StoreMemory()
-        const client = await Client.create({ principal, store })
-        // Add proof that this agent has been delegated capabilities on the space
-        const proof = await Proof.parse(process.env.PROOF)
-        const space = await client.addSpace(proof)
-        await client.setCurrentSpace(space.did())
-
-        // READY to go!
-        const fileCid = await client.uploadFile(file)
-        // ex: https://bafkreic6p45trf5qbvftzfw3hazq32m336sehlqhsibt6pafxg5yv7z64e.ipfs.w3s.link/
-        const ipfsPath = 'https://' + fileCid.toString() + '.ipfs.w3s.link/'
-        localPreview = ipfsPath
+        
         // For now, just use the local preview
         const uploadedUrl = localPreview
 
