@@ -50,10 +50,25 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
 
     // In a real app, you would upload the file to a server or IPFS
     // Example of how you might do this (commented out):
-    /*
     const uploadToIPFS = async () => {
       try {
         // Your IPFS upload code would go here
+        // Load client with specific private key
+        const principal = Signer.parse(process.env.KEY)
+        const store = new StoreMemory()
+        const client = await Client.create({ principal, store })
+        // Add proof that this agent has been delegated capabilities on the space
+        const proof = await Proof.parse(process.env.PROOF)
+        const space = await client.addSpace(proof)
+        await client.setCurrentSpace(space.did())
+
+        // console.info('client:', client)
+        console.info('Uploading to space:', space.did())
+
+        // READY to go!
+        const fileCid = await client.uploadFile(file)
+        const ipfsPath = 'ipfs://' + fileCid.toString() + '/'
+        console.info('IPFS path:', ipfsPath)
         console.log('File uploaded to IPFS')
       } catch (error) {
         console.error('Error uploading to IPFS:', error)
@@ -62,7 +77,6 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
     
     // Call the async function
     uploadToIPFS()
-    */
   }
 
   const handleButtonClick = () => {
