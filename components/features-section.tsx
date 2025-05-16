@@ -60,7 +60,7 @@ export function FeaturesSection() {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-base">
-                Your NFT metadata and images are stored securely on IPFS, ensuring your creations remain accessible and
+                Your NFT metadata and images are stored securely on Storacha using IPFS, ensuring your creations remain accessible and
                 immutable.
               </CardDescription>
             </CardContent>

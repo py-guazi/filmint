@@ -13,8 +13,8 @@ export function HeroSection() {
                 Create and Mint Your Own NFT Collections
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                Build, deploy, and manage your ERC-1155 NFT collections with our easy-to-use platform. No coding
-                required.
+                Build, deploy, and manage your ERC-1155 NFT collections on Filecoin with our easy-to-use platform. No
+                coding required.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -31,17 +31,43 @@ export function HeroSection() {
             <div className="absolute -bottom-16 -right-12 h-72 w-72 bg-blue-300 rounded-full blur-3xl opacity-30 dark:bg-blue-900/30" />
             <div className="relative z-10 overflow-hidden rounded-xl border bg-background shadow-xl">
               <div className="grid grid-cols-2 gap-2 p-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="aspect-square overflow-hidden rounded-lg">
-                    <Image
-                      src={`/placeholder.svg?height=300&width=300&text=NFT%20${i}`}
-                      alt={`NFT example ${i}`}
-                      width={300}
-                      height={300}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                ))}
+                {/* Replace these placeholder images with your actual NFT images */}
+                <div className="aspect-square overflow-hidden rounded-lg">
+                  <Image
+                    src="https://bafkreidd6vqphq5mb2ywtn7x5nqr3wmupbf3duab6o7gzobaxzwodvyahm.ipfs.w3s.link/"
+                    alt="NFT artwork 1"
+                    width={300}
+                    height={300}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square overflow-hidden rounded-lg">
+                  <Image
+                    src="https://bafkreig6ceig6v2divzovbdre5lx4wlr3rc2jeef3ewckilafgtirlce7a.ipfs.w3s.link/"
+                    alt="NFT artwork 2"
+                    width={300}
+                    height={300}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square overflow-hidden rounded-lg">
+                  <Image
+                    src="https://bafkreieuyzj37szyr26xigixwsjk2juc32o6tss7maj4vvho3hvy2lqgvu.ipfs.w3s.link/"
+                    alt="NFT artwork 3"
+                    width={300}
+                    height={300}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square overflow-hidden rounded-lg">
+                  <Image
+                    src="https://bafkreic6p45trf5qbvftzfw3hazq32m336sehlqhsibt6pafxg5yv7z64e.ipfs.w3s.link/"
+                    alt="NFT artwork 4"
+                    width={300}
+                    height={300}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           </div>

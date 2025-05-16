@@ -30,14 +30,6 @@ export function HowItWorksSection() {
                 <p className="text-muted-foreground">
                   Connect your Ethereum wallet to get started. We support MetaMask, Coinbase Wallet, and more.
                 </p>
-                <div className="relative aspect-video w-full overflow-hidden rounded-xl border">
-                  <Image
-                    src="/placeholder.svg?height=200&width=350&text=Connect%20Wallet"
-                    alt="Connect wallet illustration"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
               </div>
             </CardContent>
           </Card>
@@ -52,14 +44,6 @@ export function HowItWorksSection() {
                 <p className="text-muted-foreground">
                   Set up your ERC-1155 collection with a name, description, and cover image.
                 </p>
-                <div className="relative aspect-video w-full overflow-hidden rounded-xl border">
-                  <Image
-                    src="/placeholder.svg?height=200&width=350&text=Create%20Collection"
-                    alt="Create collection illustration"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
               </div>
             </CardContent>
           </Card>
@@ -74,14 +58,6 @@ export function HowItWorksSection() {
                 <p className="text-muted-foreground">
                   Upload your artwork, set properties, and mint your NFTs with just a few clicks.
                 </p>
-                <div className="relative aspect-video w-full overflow-hidden rounded-xl border">
-                  <Image
-                    src="/placeholder.svg?height=200&width=350&text=Mint%20NFTs"
-                    alt="Mint NFTs illustration"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
               </div>
             </CardContent>
           </Card>
