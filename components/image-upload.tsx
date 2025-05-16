@@ -76,8 +76,6 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
         // READY to go!
         const fileCid = await client.uploadFile(file)
         // ex: https://bafkreic6p45trf5qbvftzfw3hazq32m336sehlqhsibt6pafxg5yv7z64e.ipfs.w3s.link/
-        const ipfsPath = 'https://' + fileCid.toString() + '.ipfs.w3s.link/'
-        localPreview = ipfsPath
         
         // For now, just use the local preview
         const uploadedUrl = localPreview
