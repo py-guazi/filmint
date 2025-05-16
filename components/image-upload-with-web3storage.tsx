@@ -5,17 +5,14 @@ import type React from "react"
 import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Upload, ImageIcon, Loader2 } from "lucide-react"
-
-import * as Client from '@web3-storage/w3up-client'
-import { StoreMemory } from '@web3-storage/w3up-client/stores/memory'
-import * as Proof from '@web3-storage/w3up-client/proof'
-import { Signer } from '@web3-storage/w3up-client/principal/ed25519'
+import { Web3Storage } from "web3.storage"
 
 interface ImageUploadProps {
   onImageSelected: (imageUrl: string) => void
+  apiKey?: string
 }
 
-export function ImageUpload({ onImageSelected }: ImageUploadProps) {
+export function ImageUploadWithWeb3Storage({ onImageSelected, apiKey }: ImageUploadProps) {
   const [isDragging, setIsDragging] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [uploadError, setUploadError] = useState<string | null>(null)
@@ -45,10 +42,10 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
     }
   }
 
-  // Function to handle file upload
+  // Function to upload file to Web3.Storage
   const uploadFile = (file: File) => {
-    // Create a local preview for immediate feedback
-    let localPreview = URL.createObjectURL(file)
+    // First create a local preview
+    const localPreview = URL.createObjectURL(file)
 
     // Set uploading state
     setIsUploading(true)
@@ -57,33 +54,24 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
     // This function is defined separately to use async/await
     const performUpload = async () => {
       try {
-        // TODO: Replace with your actual upload implementation
-        // For now, we'll just use the local preview after a delay to simulate upload
+        if (!apiKey) {
+          throw new Error("Web3.Storage API key is missing")
+        }
 
-        // Simulate network delay
-        // await new Promise((resolve) => setTimeout(resolve, 1000))
+        // Create Web3Storage client
+        const client = new Web3Storage({ token: apiKey })
 
-        // Your upload logic goes here
-        // const uploadedUrl = await yourUploadFunction(file);
-        // Load client with specific private key
-        const principal = Signer.parse(process.env.KEY)
-        const store = new StoreMemory()
-        const client = await Client.create({ principal, store })
-        // Add proof that this agent has been delegated capabilities on the space
-        const proof = await Proof.parse(process.env.PROOF)
-        const space = await client.addSpace(proof)
-        await client.setCurrentSpace(space.did())
+        // Upload file
+        const cid = await client.put([file], {
+          name: file.name,
+          maxRetries: 3,
+        })
 
-        // READY to go!
-        const fileCid = await client.uploadFile(file)
-        // ex: https://bafkreic6p45trf5qbvftzfw3hazq32m336sehlqhsibt6pafxg5yv7z64e.ipfs.w3s.link/
-        const ipfsPath = 'https://' + fileCid.toString() + '.ipfs.w3s.link/'
-        localPreview = ipfsPath
-        // For now, just use the local preview
-        const uploadedUrl = localPreview
+        // Construct the IPFS URL
+        const ipfsUrl = `https://ipfs.io/ipfs/${cid}/${file.name}`
 
         setIsUploading(false)
-        onImageSelected(uploadedUrl)
+        onImageSelected(ipfsUrl)
       } catch (error) {
         console.error("Upload error:", error)
         setIsUploading(false)
@@ -114,7 +102,7 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
         {isUploading ? (
           <>
             <Loader2 className="h-10 w-10 text-blue-500 animate-spin" />
-            <p className="font-medium">Uploading image...</p>
+            <p className="font-medium">Uploading to IPFS...</p>
             <p className="text-sm text-muted-foreground">This may take a moment</p>
           </>
         ) : (
