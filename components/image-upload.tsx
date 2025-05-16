@@ -74,7 +74,6 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
         const space = await client.addSpace(proof)
         await client.setCurrentSpace(space.did())
         // READY to go!
-        const fileCid = await client.uploadFile(file)
         // ex: https://bafkreic6p45trf5qbvftzfw3hazq32m336sehlqhsibt6pafxg5yv7z64e.ipfs.w3s.link/
         
         // For now, just use the local preview
