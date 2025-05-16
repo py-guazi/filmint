@@ -34,7 +34,7 @@ export function HeroSection() {
                 {/* Replace these placeholder images with your actual NFT images */}
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <Image
-                    src="https://bafkreidd6vqphq5mb2ywtn7x5nqr3wmupbf3duab6o7gzobaxzwodvyahm.ipfs.w3s.link/"
+                    src="https://gateway.lighthouse.storage/ipfs/QmPWRfN6E5xzuHiyot1XtBzWQjL2vFKsVMeiUs7A8vqiED"
                     alt="NFT artwork 1"
                     width={300}
                     height={300}
@@ -52,7 +52,7 @@ export function HeroSection() {
                 </div>
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <Image
-                    src="https://bafkreieuyzj37szyr26xigixwsjk2juc32o6tss7maj4vvho3hvy2lqgvu.ipfs.w3s.link/"
+                    src="https://ipfs.io/ipfs/QmWW6mhZtGQ8HA7cA7bxe8egi4G7CYQeQCEr726pGPxw5R/145.png"
                     alt="NFT artwork 3"
                     width={300}
                     height={300}
@@ -61,7 +61,7 @@ export function HeroSection() {
                 </div>
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <Image
-                    src="https://bafkreic6p45trf5qbvftzfw3hazq32m336sehlqhsibt6pafxg5yv7z64e.ipfs.w3s.link/"
+                    src="https://gateway.lighthouse.storage/ipfs/QmVR6rKJ8ecDoVFYQGe1ZyLCrkHTdhEoqXK3mx1NTxZwHA"
                     alt="NFT artwork 4"
                     width={300}
                     height={300}

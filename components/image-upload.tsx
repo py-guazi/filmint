@@ -6,6 +6,11 @@ import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Upload, ImageIcon } from "lucide-react"
 
+import * as Client from '@web3-storage/w3up-client'
+import { StoreMemory } from '@web3-storage/w3up-client/stores/memory'
+import * as Proof from '@web3-storage/w3up-client/proof'
+import { Signer } from '@web3-storage/w3up-client/principal/ed25519'
+
 interface ImageUploadProps {
   onImageSelected: (imageUrl: string) => void
 }
