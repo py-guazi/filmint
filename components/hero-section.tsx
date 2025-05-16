@@ -1,0 +1,52 @@
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+
+export function HeroSection() {
+  return (
+    <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-blue-50 to-white dark:from-blue-950/20 dark:to-background">
+      <div className="container px-4 md:px-6">
+        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+          <div className="flex flex-col justify-center space-y-4">
+            <div className="space-y-2">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                Create and Mint Your Own NFT Collections
+              </h1>
+              <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                Build, deploy, and manage your ERC-1155 NFT collections with our easy-to-use platform. No coding
+                required.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <Link href="/connect">
+                <Button className="bg-blue-500 hover:bg-blue-600">Connect Wallet</Button>
+              </Link>
+              <Link href="#how-it-works">
+                <Button variant="outline">Learn More</Button>
+              </Link>
+            </div>
+          </div>
+          <div className="mx-auto lg:mx-0 relative">
+            <div className="absolute -top-12 -left-12 h-72 w-72 bg-blue-200 rounded-full blur-3xl opacity-30 dark:bg-blue-900/30" />
+            <div className="absolute -bottom-16 -right-12 h-72 w-72 bg-blue-300 rounded-full blur-3xl opacity-30 dark:bg-blue-900/30" />
+            <div className="relative z-10 overflow-hidden rounded-xl border bg-background shadow-xl">
+              <div className="grid grid-cols-2 gap-2 p-2">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="aspect-square overflow-hidden rounded-lg">
+                    <Image
+                      src={`/placeholder.svg?height=300&width=300&text=NFT%20${i}`}
+                      alt={`NFT example ${i}`}
+                      width={300}
+                      height={300}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
