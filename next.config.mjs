@@ -26,7 +26,7 @@ const nextConfig = {
   experimental: {
     serverSourceMaps: false,
   },
-  output: "export",
+  // output: "export",
 }
 
 export default nextConfig
