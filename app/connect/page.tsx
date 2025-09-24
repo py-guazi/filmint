@@ -1,46 +1,36 @@
 "use client"
 
-import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Wallet } from "lucide-react"
+import { useAccount, useConnect } from "wagmi"
+import { metaMask } from "wagmi/connectors"
+import { useEffect } from "react"
 
 export default function ConnectWalletPage() {
   const router = useRouter()
-  const [connecting, setConnecting] = useState<string | null>(null)
+  const { isConnected } = useAccount()
+  const { connect, isPending, error } = useConnect()
 
-  const handleConnect = (walletName: string) => {
-    setConnecting(walletName)
-
-    // Simulate connection
-    setTimeout(() => {
-      router.push("/dashboard")
-    }, 1500)
+  const handleConnect = () => {
+    connect({ connector: metaMask() })
   }
+
+  // Redirect to dashboard if already connected
+  useEffect(() => {
+    if (isConnected) {
+      router.push("/dashboard")
+    }
+  }, [isConnected, router])
 
   const wallets = [
     {
       name: "MetaMask",
       icon: "/placeholder.svg?height=40&width=40&text=MM",
       description: "Connect to your MetaMask wallet",
-    },
-    {
-      name: "Coinbase Wallet",
-      icon: "/placeholder.svg?height=40&width=40&text=CB",
-      description: "Connect to your Coinbase wallet",
-    },
-    {
-      name: "WalletConnect",
-      icon: "/placeholder.svg?height=40&width=40&text=WC",
-      description: "Connect using WalletConnect",
-    },
-    {
-      name: "Phantom",
-      icon: "/placeholder.svg?height=40&width=40&text=PH",
-      description: "Connect to your Phantom wallet",
     },
   ]
 
@@ -64,42 +54,41 @@ export default function ConnectWalletPage() {
               Back to Home
             </Link>
             <CardTitle className="text-2xl">Connect Your Wallet</CardTitle>
-            <CardDescription>Connect your wallet to start creating and minting NFTs</CardDescription>
+            <CardDescription>Connect MetaMask to start creating and minting NFTs</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {wallets.map((wallet) => (
-              <Button
-                key={wallet.name}
-                variant="outline"
-                className="w-full justify-start h-auto py-4 px-4"
-                onClick={() => handleConnect(wallet.name)}
-                disabled={connecting !== null}
-              >
-                <div className="flex items-center w-full">
-                  <div className="w-10 h-10 rounded-full overflow-hidden mr-4 flex-shrink-0">
-                    <Image src={wallet.icon || "/placeholder.svg"} alt={wallet.name} width={40} height={40} />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <div className="font-medium">{wallet.name}</div>
-                    <div className="text-xs text-muted-foreground">{wallet.description}</div>
-                  </div>
-                  {connecting === wallet.name && (
-                    <div className="ml-2 h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-r-transparent" />
-                  )}
+            <Button
+              variant="outline"
+              className="w-full justify-start h-auto py-4 px-4"
+              onClick={handleConnect}
+              disabled={isPending}
+            >
+              <div className="flex items-center w-full">
+                <div className="w-10 h-10 rounded-full overflow-hidden mr-4 flex-shrink-0 bg-orange-500 flex items-center justify-center">
+                  <Wallet className="h-6 w-6 text-white" />
                 </div>
-              </Button>
-            ))}
+                <div className="flex-1 text-left">
+                  <div className="font-medium">MetaMask</div>
+                  <div className="text-xs text-muted-foreground">Connect to your MetaMask wallet</div>
+                </div>
+                {isPending && (
+                  <div className="ml-2 h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-r-transparent" />
+                )}
+              </div>
+            </Button>
+
+            {error && <div className="text-sm text-red-500 text-center">{error.message}</div>}
           </CardContent>
           <CardFooter className="flex justify-center text-sm text-muted-foreground">
             <p>
-              New to Ethereum?{" "}
+              Don't have MetaMask?{" "}
               <a
-                href="https://ethereum.org/wallets/"
+                href="https://metamask.io/download/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
               >
-                Learn about wallets
+                Download here
               </a>
             </p>
           </CardFooter>

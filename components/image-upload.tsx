@@ -6,11 +6,6 @@ import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Upload, ImageIcon, Loader2 } from "lucide-react"
 
-import * as Client from '@web3-storage/w3up-client'
-import { StoreMemory } from '@web3-storage/w3up-client/stores/memory'
-import * as Proof from '@web3-storage/w3up-client/proof'
-import { Signer } from '@web3-storage/w3up-client/principal/ed25519'
-
 interface ImageUploadProps {
   onImageSelected: (imageUrl: string) => void
 }
@@ -47,6 +42,12 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
 
   // Function to handle file upload
   const uploadFile = (file: File) => {
+    // Check file size (5 MB = 5 * 1024 * 1024 bytes)
+    if (file.size > 5 * 1024 * 1024) {
+      setUploadError("File size must be less than 5 MB.")
+      return
+    }
+
     // Create a local preview for immediate feedback
     let localPreview = URL.createObjectURL(file)
 
@@ -59,28 +60,12 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
       try {
         // TODO: Replace with your actual upload implementation
         // For now, we'll just use the local preview after a delay to simulate upload
-
         // Simulate network delay
         // await new Promise((resolve) => setTimeout(resolve, 1000))
 
         // Your upload logic goes here
-        // const uploadedUrl = await yourUploadFunction(file);
-        // Load client with specific private key
-        const principal = Signer.parse(process.env.KEY)
-        const store = new StoreMemory()
-        const client = await Client.create({ principal, store })
-        // Add proof that this agent has been delegated capabilities on the space
-        const proof = await Proof.parse(process.env.PROOF)
-        const space = await client.addSpace(proof)
-        await client.setCurrentSpace(space.did())
-        // READY to go!
-        const fileCid = await client.uploadFile(file)
-        // ex: https://bafkreic6p45trf5qbvftzfw3hazq32m336sehlqhsibt6pafxg5yv7z64e.ipfs.w3s.link/
-        const ipfsPath = 'https://' + fileCid.toString() + '.ipfs.w3s.link/'
-        localPreview = ipfsPath
-        
-        // For now, just use the local preview
-        const uploadedUrl = localPreview
+        const data = await uploadFileToIPFS(file);
+        const uploadedUrl = data.url;
 
         setIsUploading(false)
         onImageSelected(uploadedUrl)
@@ -96,6 +81,24 @@ export function ImageUpload({ onImageSelected }: ImageUploadProps) {
     // Call the async function
     performUpload()
   }
+
+  // Send file to API route
+  const uploadFileToIPFS = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || 'Upload failed');
+    }
+
+    return data; // { success: true, url: '...' }
+  };
 
   const handleButtonClick = () => {
     fileInputRef.current?.click()

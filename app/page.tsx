@@ -5,8 +5,10 @@ import { FeaturesSection } from "@/components/features-section"
 import { AboutSection } from "@/components/about-section"
 import { HowItWorksSection } from "@/components/how-it-works-section"
 import { Footer } from "@/components/footer"
+import { ConnectWalletButton } from "@/components/connect-wallet-button"
 
 export default function Home() {
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -31,9 +33,7 @@ export default function Home() {
             <Link href="/dashboard">
               <Button variant="outline">Dashboard</Button>
             </Link>
-            <Link href="/connect">
-              <Button className="bg-blue-500 hover:bg-blue-600">Connect Wallet</Button>
-            </Link>
+            <ConnectWalletButton />
           </div>
         </div>
       </header>

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { ConnectWalletButton } from "@/components/connect-wallet-button"
 
 export function HeroSection() {
   return (
@@ -18,9 +19,7 @@ export function HeroSection() {
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Link href="/connect">
-                <Button className="bg-blue-500 hover:bg-blue-600">Connect Wallet</Button>
-              </Link>
+              <ConnectWalletButton />
               <Link href="#how-it-works">
                 <Button variant="outline">Learn More</Button>
               </Link>
@@ -34,7 +33,9 @@ export function HeroSection() {
                 {/* Replace these placeholder images with your actual NFT images */}
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <Image
-                    src="https://gateway.lighthouse.storage/ipfs/QmPWRfN6E5xzuHiyot1XtBzWQjL2vFKsVMeiUs7A8vqiED"
+                    // src="https://gateway.lighthouse.storage/ipfs/QmPWRfN6E5xzuHiyot1XtBzWQjL2vFKsVMeiUs7A8vqiED"
+                    // src="https://bafkreihnmks5636kdztkzh2qxqef2di3zovbzypy4hz4rhr6x3abhmeo6e.ipfs.w3s.link/"
+                    src="https://bafkreic6cfavebbgqwadyrygdberypoz3vtgaat3dsp35apdmz525mccuy.ipfs.w3s.link/"
                     alt="NFT artwork 1"
                     width={300}
                     height={300}
@@ -52,7 +53,8 @@ export function HeroSection() {
                 </div>
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <Image
-                    src="https://ipfs.io/ipfs/QmWW6mhZtGQ8HA7cA7bxe8egi4G7CYQeQCEr726pGPxw5R/145.png"
+                    // src="https://ipfs.io/ipfs/QmWW6mhZtGQ8HA7cA7bxe8egi4G7CYQeQCEr726pGPxw5R/145.png"
+                    src="https://gateway.lighthouse.storage/ipfs/QmVR6rKJ8ecDoVFYQGe1ZyLCrkHTdhEoqXK3mx1NTxZwHA"
                     alt="NFT artwork 3"
                     width={300}
                     height={300}
@@ -61,7 +63,7 @@ export function HeroSection() {
                 </div>
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <Image
-                    src="https://gateway.lighthouse.storage/ipfs/QmVR6rKJ8ecDoVFYQGe1ZyLCrkHTdhEoqXK3mx1NTxZwHA"
+                    src="https://bafkreigz72atic3cxiwjpcse4bwrjdpl3y6msenf77e6fdpxbmqxswx7ji.ipfs.w3s.link/"
                     alt="NFT artwork 4"
                     width={300}
                     height={300}

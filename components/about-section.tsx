@@ -7,7 +7,7 @@ export function AboutSection() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm dark:bg-blue-800/30 mb-4">About Us</div>
-          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight mb-4">A Project by Guazi Dynamic</h2>
+          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight mb-4">A Project by Ancients Research</h2>
           <p className="text-muted-foreground md:text-xl/relaxed">
             We are a team of highly motivated individuals in Web3 industry with decades of combined experience in investing, mining and building businesses. This project is funded by FIL Builder Next Step Grants and built by our team at Guazi Dynamic. Learn more about
             FIL Builder Next Step Grants{" "}

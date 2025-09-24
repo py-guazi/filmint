@@ -1,53 +1,48 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { PlusCircle, Grid3X3, Wallet } from "lucide-react"
 import { DashboardHeader } from "@/components/dashboard-header"
-import { ConnectWalletButton } from "@/components/connect-wallet-button"
+import { useAccount } from "wagmi"
+import { useRouter } from "next/navigation"
+import { useCollections, useUserStats } from "@/hooks/use-local-database"
 
 export default function DashboardPage() {
-  const [isConnected, setIsConnected] = useState(false)
+  const { isConnected } = useAccount()
+  const router = useRouter()
+
+  const { collections, loading: collectionsLoading } = useCollections()
+  const { stats, loading: statsLoading } = useUserStats()
 
   // Mock data for collections
-  const collections = [
-    {
-      id: 1,
-      name: "Cosmic Explorers",
-      description: "A collection of space explorers traversing the universe",
-      items: 12,
-      image: "/placeholder.svg?height=400&width=400",
-    },
-    {
-      id: 2,
-      name: "Digital Dreams",
-      description: "Abstract digital art representing dreamscapes",
-      items: 5,
-      image: "/placeholder.svg?height=400&width=400",
-    },
-  ]
+  // const collections = [
+  //   {
+  //     id: 1,
+  //     name: "Cosmic Explorers",
+  //     description: "A collection of space explorers traversing the universe",
+  //     items: 12,
+  //     image: "/placeholder.svg?height=400&width=400",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Digital Dreams",
+  //     description: "Abstract digital art representing dreamscapes",
+  //     items: 5,
+  //     image: "/placeholder.svg?height=400&width=400",
+  //   },
+  // ]
 
-  if (!isConnected) {
-    return (
-      <div className="flex min-h-screen flex-col">
-        <DashboardHeader />
-        <main className="flex-1 container py-12">
-          <div className="flex flex-col items-center justify-center h-[70vh] max-w-md mx-auto text-center">
-            <Wallet className="h-16 w-16 mb-6 text-blue-500" />
-            <h1 className="text-3xl font-bold mb-2">Connect Your Wallet</h1>
-            <p className="text-muted-foreground mb-8">
-              Connect your wallet to access your NFT collections and start minting.
-            </p>
-            <ConnectWalletButton onConnect={() => setIsConnected(true)} />
-          </div>
-        </main>
-      </div>
-    )
-  }
+  // Redirect to connect page if not connected
+  useEffect(() => {
+    if (!isConnected) {
+      router.push("/connect")
+    }
+  }, [isConnected, router])
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -73,7 +68,9 @@ export default function DashboardPage() {
             <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
           <TabsContent value="collections">
-            {collections.length > 0 ? (
+            {collectionsLoading ? (
+              <div>Loading collections...</div>
+            ) : collections.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {collections.map((collection) => (
                   <Link href={`/dashboard/collection/${collection.id}`} key={collection.id}>
@@ -91,7 +88,10 @@ export default function DashboardPage() {
                         <CardDescription>{collection.description}</CardDescription>
                       </CardHeader>
                       <CardFooter className="flex justify-between">
-                        <div className="text-sm text-muted-foreground">{collection.items} items</div>
+                        <div className="text-sm text-muted-foreground">{collection.itemCount} items</div>
+                        {/* <div className="text-xs text-muted-foreground">
+                          {collection.status === "deployed" ? "✅ Deployed" : "🔄 Deploying"}
+                        </div> */}
                         <Button variant="outline" size="sm">
                           View
                         </Button>
