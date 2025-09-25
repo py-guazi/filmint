@@ -10,4 +10,4 @@ This MVP NFT studio project was derived from a POC project developed and open so
 
 ## dev
 
-- [ ] https://github.com/py-guazi/filmint/issues/1
+Sharing some of the [thoughts](https://github.com/py-guazi/filmint/issues/1) during development of this MVP. 
