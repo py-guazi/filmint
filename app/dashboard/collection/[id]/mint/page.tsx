@@ -20,6 +20,8 @@ import { createMint } from "@/lib/local-database"
 import { abi } from '../../../../../lib/MyContract'; // Adjust path
 import { parseEventLogs, parseEther } from 'viem';
 
+export const runtime = "edge";
+
 interface MintAttribute {
   trait_type: string
   value: string
