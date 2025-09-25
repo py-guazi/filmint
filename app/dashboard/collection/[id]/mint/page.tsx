@@ -108,7 +108,7 @@ export default function MintNFTPage() {
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await fetch('https://uploader.tctctcly.workers.dev/', {
+    const response = await fetch('/api/upload', {
       method: 'POST',
       body: formData,
     });

@@ -28,3 +28,18 @@ next-env.d.ts
 
 # cloudfare
 .open-next
+
+.DS_Store
+app/.DS_Store
+components/.DS_Store
+lib/.DS_Store
+node_modules/.DS_Store
+public/.DS_Store
+styles/.DS_Store
+app/dashboard/.DS_Store
+app/dashboard/collection/.DS_Store
+app/dashboard/collection/[id]/.DS_Store
+app/dashboard/collection/[id]/mint/.DS_Store
+app/dashboard/create-collection/.DS_Store
+app/api/.DS_Store
+app/api/upload/.DS_Store
