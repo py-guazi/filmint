@@ -7,6 +7,8 @@ import { HowItWorksSection } from "@/components/how-it-works-section"
 import { Footer } from "@/components/footer"
 import { ConnectWalletButton } from "@/components/connect-wallet-button"
 
+export const runtime = "edge";
+
 export default function Home() {
 
   return (
