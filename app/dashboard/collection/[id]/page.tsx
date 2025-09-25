@@ -12,6 +12,8 @@ import { ArrowLeft, PlusCircle, ExternalLink, Share2, MoreHorizontal } from "luc
 import { useAccount } from "wagmi"
 import { useCollections, useMints } from "@/hooks/use-local-database"
 
+export const runtime = "edge";
+
 export default function CollectionPage() {
   const router = useRouter()
   const { isConnected } = useAccount()

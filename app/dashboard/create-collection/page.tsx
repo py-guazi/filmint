@@ -20,6 +20,8 @@ import { createCollection } from "@/lib/local-database"
 // import MyContract from './MyContract.json';
 import {abi, bytecode} from '../../../lib/MyContract';
 
+export const runtime = "edge";
+
 interface CollectionMetadata {
   name: string
   description: string

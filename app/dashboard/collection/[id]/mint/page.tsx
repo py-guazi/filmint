@@ -25,6 +25,8 @@ interface MintAttribute {
   value: string
 }
 
+export const runtime = "edge";
+
 export default function MintNFTPage() {
   const params = useParams()
   const router = useRouter()

@@ -10,6 +10,8 @@ import { useAccount, useConnect } from "wagmi"
 import { metaMask } from "wagmi/connectors"
 import { useEffect } from "react"
 
+export const runtime = "edge";
+
 export default function ConnectWalletPage() {
   const router = useRouter()
   const { isConnected } = useAccount()

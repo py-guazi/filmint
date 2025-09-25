@@ -12,6 +12,8 @@ import { useAccount } from "wagmi"
 import { useRouter } from "next/navigation"
 import { useCollections, useUserStats } from "@/hooks/use-local-database"
 
+export const runtime = "edge";
+
 export default function DashboardPage() {
   const { isConnected } = useAccount()
   const router = useRouter()
