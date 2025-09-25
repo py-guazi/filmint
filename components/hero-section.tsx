@@ -14,7 +14,7 @@ export function HeroSection() {
                 Create and Mint Your Own NFT Collections
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                Build, deploy, and manage your ERC-1155 NFT collections on Filecoin with our easy-to-use platform. No
+                Upload, deploy, and manage your NFT collections on Filecoin with our easy-to-use platform. No
                 coding required.
               </p>
             </div>

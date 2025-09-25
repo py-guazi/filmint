@@ -25,7 +25,6 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   experimental: {
     serverSourceMaps: false,
-    runtime: "experimental-edge",
   },
   // output: "export",
 }

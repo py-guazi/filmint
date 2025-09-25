@@ -5,8 +5,6 @@ import { StoreMemory } from '@web3-storage/w3up-client/stores/memory'
 import * as Proof from '@web3-storage/w3up-client/proof'
 import { Signer } from '@web3-storage/w3up-client/principal/ed25519'
 
-export const runtime = "edge";
-
 export async function POST(req: NextRequest) {
   try {
     // Get the form data from the request

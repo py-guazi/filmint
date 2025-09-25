@@ -28,7 +28,7 @@ export function HowItWorksSection() {
                 </div>
                 <h3 className="text-xl font-bold">Connect Your Wallet</h3>
                 <p className="text-muted-foreground">
-                  Connect your Ethereum wallet to get started. We support MetaMask, Coinbase Wallet, and more.
+                  Connect your wallet to get started. We currently support MetaMask only.
                 </p>
               </div>
             </CardContent>
